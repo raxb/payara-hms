@@ -4,9 +4,10 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
+import java.util.TimeZone;
 
 import jakarta.enterprise.event.Event;
 import jakarta.inject.Inject;
@@ -57,12 +58,14 @@ public class PatientResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<PatientEntity> appointments(@PathParam("appointmentDate") String appointmentDate) {
 		Date date = parseStringDate(appointmentDate);
+		Date eod = Date.from(date.toInstant().plus(1, ChronoUnit.DAYS));
 
-		return patientDetailService.patientsAppointmentForDay(date);
+		return patientDetailService.patientsAppointmentForDay(date, eod);
 	}
 
 	private Date parseStringDate(String appointmentDate) {
-		DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+		format.setTimeZone(TimeZone.getTimeZone("GMT"));
 		Date date;
 		try {
 			date = format.parse(appointmentDate);
@@ -87,6 +90,7 @@ public class PatientResource {
 		toBeUpdatedPatient.setUpcomingAppointment(date);
 
 		addAppointmentEvent.fire(new AddAppointmentEvent(toBeUpdatedPatient));
+		//send notification
 		return patientDetailService.getPatientDetails(patient_id);
 	}
 

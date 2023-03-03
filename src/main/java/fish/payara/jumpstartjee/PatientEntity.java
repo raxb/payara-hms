@@ -70,14 +70,14 @@ public class PatientEntity implements Serializable {
 	@Column(name = "LAST_APPOINTMENT")
 	@Past
 	@Temporal(TemporalType.TIMESTAMP)
-	@JsonbDateFormat("yyyy-MM-dd HH:mm:ss")
+	@JsonbDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
 	private Date lastAppointment;
 
 	@Nullable
 	@Column(name = "UPCOMING_APPOINTMENT")
 	@FutureOrPresent
 	@Temporal(TemporalType.TIMESTAMP)
-	@JsonbDateFormat("yyyy-MM-dd HH:mm:ss")
+	@JsonbDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
 	private Date upcomingAppointment;
 
 	public Long getPatient_id() {
