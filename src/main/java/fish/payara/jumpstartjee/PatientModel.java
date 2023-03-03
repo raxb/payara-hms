@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 import jakarta.annotation.Nullable;
 import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -18,6 +17,7 @@ import jakarta.inject.Named;
 @Named
 public class PatientModel {
 
+	private long patient_id;
 	private String patientName;
 	private Gender gender;
 	private int age;
@@ -37,7 +37,8 @@ public class PatientModel {
 	public PatientModel() {
 	}
 
-	public PatientModel(String patientName, Gender gender, int age, String email, Date lastVisited) {
+	public PatientModel(Long patient_id, String patientName, Gender gender, int age, String email, Date lastVisited) {
+		this.patient_id = patient_id;
 		this.patientName = patientName;
 		this.gender = gender;
 		this.age = age;
@@ -45,23 +46,12 @@ public class PatientModel {
 		this.lastVisited = lastVisited;
 	}
 
-	public List<PatientModel> getPatientsForToday() {
-		result = appointmentsForToday().stream().map(p -> new PatientModel(p.getFirstname() + " " + p.getLastname(),
-				p.getGender(), p.getAge(), p.getEmail(), p.getLastAppointment())).collect(Collectors.toList());
-		return result;
-	}
-
-	private List<PatientEntity> appointmentsForToday() {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-		format.setTimeZone(TimeZone.getTimeZone("GMT"));
-		Date today = new Date();
-		Date eod = Date.from(today.toInstant().plus(1, ChronoUnit.DAYS));
-
-		return patientDetailService.patientsAppointmentForDay(today, eod);
-	}
-
 	public List<PatientModel> getResult() {
 		return result;
+	}
+
+	public long getPatient_id() {
+		return patient_id;
 	}
 
 	public String getPatientName() {
@@ -82,6 +72,27 @@ public class PatientModel {
 
 	public Date getLastVisited() {
 		return lastVisited;
+	}
+
+	public List<PatientModel> getPatientsForToday() {
+		result = appointmentsForToday().stream()
+				.map(p -> new PatientModel(p.getPatient_id(), p.getFirstname() + " " + p.getLastname(), p.getGender(),
+						p.getAge(), p.getEmail(), p.getLastAppointment()))
+				.collect(Collectors.toList());
+		return result;
+	}
+
+	private List<PatientEntity> appointmentsForToday() {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+		format.setTimeZone(TimeZone.getTimeZone("GMT"));
+		Date today = new Date();
+		Date eod = Date.from(today.toInstant().plus(1, ChronoUnit.DAYS));
+
+		return patientDetailService.patientsAppointmentForDay(today, eod);
+	}
+	
+	public void rescheduleAppointment(Long patient_id) {
+		
 	}
 
 }

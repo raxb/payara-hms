@@ -84,10 +84,6 @@ public class PatientEntity implements Serializable {
 		return patient_id;
 	}
 
-	public void setPatient_id(Long patient_id) {
-		this.patient_id = patient_id;
-	}
-
 	public String getFirstname() {
 		return firstname;
 	}

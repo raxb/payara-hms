@@ -5,3 +5,17 @@ insert into PatientEntity (patient_id, first_name, last_name, gender, age, email
 insert into PatientEntity (patient_id, first_name, last_name, gender, age, email, address_line1, address_line2, city, state, country, zip_code, last_appointment, upcoming_appointment) values (1003, 'Tony','Stark','MALE',58,'tony@stark.com','addressLine1','addressLine2','city','state','country','zip_code','2021-11-30T00:00:00Z','2023-03-03T22:00:00Z');
 insert into PatientEntity (patient_id, first_name, last_name, gender, age, email, address_line1, address_line2, city, state, country, zip_code, last_appointment, upcoming_appointment) values (1004, 'Bruce','Wayne','MALE',50,'bruce@wayne.com','addressLine1','addressLine2','city','state','country','zip_code','2022-06-21T00:00:00Z','2023-03-04T00:00:00Z');
 insert into PatientEntity (patient_id, first_name, last_name, gender, age, email, address_line1, address_line2, city, state, country, zip_code, last_appointment, upcoming_appointment) values (1005, 'Kent','Clark','MALE',55,'kent@clark.com','addressLine1','addressLine2','city','state','country','zip_code','2022-04-19T00:00:00Z','2023-03-05T00:00:00Z');
+
+create table if not exists PharmacyEntity(item_id int not null, item_name varchar(255), item_quantity bigint, item_price decimal(6,2), primary key (item_id));
+insert into PharmacyEntity (item_id, item_name, item_quantity, item_price) values (2001, 'Ativan', 125, 10.50);
+insert into PharmacyEntity (item_id, item_name, item_quantity, item_price) values (2002, 'Benzonatate', 150, 13.50);
+insert into PharmacyEntity (item_id, item_name, item_quantity, item_price) values (2003, 'Ciprofloxacin', 10, 54.54);
+insert into PharmacyEntity (item_id, item_name, item_quantity, item_price) values (2004, 'Doxycycline', 76, 85.74);
+insert into PharmacyEntity (item_id, item_name, item_quantity, item_price) values (2005, 'Entresto', 53, 285.57);
+insert into PharmacyEntity (item_id, item_name, item_quantity, item_price) values (2006, 'Fentanyl Patch', 68, 34.00);
+insert into PharmacyEntity (item_id, item_name, item_quantity, item_price) values (2007, 'Gilenya', 548, 545.54);
+insert into PharmacyEntity (item_id, item_name, item_quantity, item_price) values (2008, 'Hydrochlorothiazide', 264, 19.57);
+insert into PharmacyEntity (item_id, item_name, item_quantity, item_price) values (2009, 'Omeprazole', 98, 2.32);
+insert into PharmacyEntity (item_id, item_name, item_quantity, item_price) values (2010, 'Metformin', 51, 98.78);
+
+create table if not exists ItemNotificationEntity(notify_id int not null, item_id int, email_id varchar(30), is_notified boolean, primary key (notify_id));

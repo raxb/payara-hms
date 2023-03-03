@@ -89,7 +89,7 @@ public class PatientResource {
 		toBeUpdatedPatient.setUpcomingAppointment(date);
 
 		addAppointmentEvent.fire(new AddAppointmentEvent(toBeUpdatedPatient));
-		//send notification
+		//TODO: send notification
 		return patientDetailService.getPatientDetails(patient_id);
 	}
 
