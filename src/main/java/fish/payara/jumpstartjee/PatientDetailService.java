@@ -35,7 +35,7 @@ public class PatientDetailService {
 
 	public List<PatientEntity> patientsAppointmentForDay(Date appointmentDate, Date eod) {
 		return em.createQuery(
-				"select p.patient_id, p.firstname, p.lastname from PatientEntity p where p.upcomingAppointment between :appointmentDate and :eod",
+				"select p from PatientEntity p where p.upcomingAppointment between :appointmentDate and :eod",
 				PatientEntity.class)
 				.setParameter("appointmentDate", appointmentDate, TemporalType.TIMESTAMP)
 				.setParameter("eod", eod, TemporalType.TIMESTAMP)
