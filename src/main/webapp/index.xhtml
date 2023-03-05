@@ -37,12 +37,14 @@
 						<td><h:outputText value="#{patientModelData.age}" /></td>
 						<td><h:outputText value="#{patientModelData.email}" /></td>
 						<td><h:outputText value="#{patientModelData.lastVisited}" /></td>
-						<td>
-						<input type="date" jsf:value="#{patientModelData.rescheduleDate}" />
+						<!-- <td>
+						<input id="rescheduleDate" type="date" jsf:value="#{patientModelData.rescheduleDate}" />
 						<h:commandButton
 								actionListener="#{patientModel.rescheduleAppointment(patientModelData.patient_id)}"
-								value="Reschedule" />
-						</td>
+								value="Reschedule">
+								<f:ajax event="click" listener="#{patientModel.rescheduleAppointment(patientModelData.patient_id)}" />
+								</h:commandButton>
+						</td> -->
 					</tr>
 				</ui:repeat>
 			</table>

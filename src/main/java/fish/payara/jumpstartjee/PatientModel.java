@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import jakarta.annotation.Nullable;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.enterprise.event.Event;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
@@ -29,6 +30,9 @@ public class PatientModel {
 
 	@Inject
 	private PatientDetailService patientDetailService;
+	
+	@Inject
+	private Event<AddAppointmentEvent> addAppointmentEvent;
 
 	@PostConstruct
 	public void init() {
@@ -97,7 +101,11 @@ public class PatientModel {
 	}
 	
 	public void rescheduleAppointment(Long patient_id) {
-		
+		System.out.println("===================="+patient_id);
+		PatientEntity toBeUpdatedPatient = patientDetailService.getPatientDetails(patient_id);
+		toBeUpdatedPatient.setUpcomingAppointment(rescheduleDate);
+
+		addAppointmentEvent.fire(new AddAppointmentEvent(toBeUpdatedPatient));
 	}
 
 }
