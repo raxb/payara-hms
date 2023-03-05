@@ -61,6 +61,7 @@
 					<th>Item Name</th>
 					<th>Quantity</th>
 					<th>Price</th>
+					<th>Enter Patient's registered emailId</th>
 				</tr>
 				<ui:repeat value="#{pharmacyModel.pharmacyModelData}"
 					var="pharmacyData">
@@ -68,16 +69,17 @@
 						<td><h:outputText value="#{pharmacyData.itemName}" /></td>
 						<td><h:outputText value="#{pharmacyData.itemQuantity}" /></td>
 						<td><h:outputText value="#{pharmacyData.itemPrice}" /></td>
-						<td>
-						<h:inputText id="emailToNotify" value="#{pharmacyModel.notifyForEmail}" />
-						<h:commandButton actionListener="#{pharmacyModel.addToNotification(pharmacyData.itemId)}" value="Notify">
-						<f:ajax execute="emailToNotify @this"/>
-						</h:commandButton>
-						</td>
+						<td><h:inputText id="emailToNotify"
+								value="#{pharmacyModel.notifyForEmail}" /> <h:commandButton
+								actionListener="#{pharmacyModel.addToNotification(pharmacyData.itemId)}"
+								value="Notify">
+								<f:ajax execute="emailToNotify @this" />
+							</h:commandButton></td>
 					</tr>
 				</ui:repeat>
 			</table>
 		</h:panelGroup>
+
 	</h:form>
 
 	<h2>Doctor Availability</h2>

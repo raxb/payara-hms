@@ -2,6 +2,7 @@ package fish.payara.jumpstartjee;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.event.Observes;
@@ -44,6 +45,11 @@ public class PatientDetailService {
 
 	public void updateAppointment(@Observes AddAppointmentEvent addAppointmentEvent) {
 		em.merge(addAppointmentEvent.getPatientEntity());
+	}
+	
+	public Optional<PatientEntity> patientExistsWithEmail(String emailId) {
+		return em.createQuery("select patient from PatientEntity patient where patient.email = :emailId",
+				PatientEntity.class).setParameter("emailId", emailId).getResultList().stream().findFirst();
 	}
 
 }

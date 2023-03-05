@@ -11,7 +11,7 @@ public class NotificationScheduler {
 	@PersistenceContext
 	private EntityManager em;
 	
-	@Schedule(second = "*/5", minute = "*", hour = "*", persistent=false)
+	@Schedule(second = "*/5", minute = "*/30", hour = "*", persistent=false)
     public void automaticallyScheduled() {
 		System.out.println("===============> Notification Scheduler <===============");
 		var sendNotification = em.createQuery("select n from ItemNotificationEntity n where n.isNotified = true", ItemNotificationEntity.class).getResultList();

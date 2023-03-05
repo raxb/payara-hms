@@ -7,7 +7,6 @@ import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import jakarta.validation.constraints.Email;
 
 @RequestScoped
 @Named
@@ -18,6 +17,9 @@ public class PharmacyModel {
 	
 	@Inject
 	private NotificationService notificationService;
+	
+	@Inject 
+	private PatientDetailService patientDetailService;
 
 	private Long itemId;
 	private String itemName;
@@ -82,7 +84,12 @@ public class PharmacyModel {
 
 	}
 	
-	public void addToNotification(Long itemId) {
+	public void addToNotification(Long itemId) throws Exception {
+		
+		if(!patientDetailService.patientExistsWithEmail(notifyForEmail).isPresent()) {
+			throw new Exception("\n There is no patient registered with the emailId " + notifyForEmail +"\n Please register the patient details!");
+		}
+		
 		System.out.println("----------------------PharmacyModel.addToNotification(Long) " +itemId+" "+notifyForEmail);
 		notificationService.addToNotify(itemId, notifyForEmail);
 	}

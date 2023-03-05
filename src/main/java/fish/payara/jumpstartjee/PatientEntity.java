@@ -16,12 +16,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.FutureOrPresent;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Positive;
 
+@ValidPatient
 @Entity
 @Table(name = "PatientEntity")
 public class PatientEntity implements Serializable {
@@ -32,12 +32,12 @@ public class PatientEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "PATIENT_ID")
 	private Long patient_id;
-
-	@NotNull
+	
+	@NotEmpty(message ="Patient First name must not be empty")
 	@Column(name = "FIRST_NAME")
 	private String firstname;
 
-	@NotNull
+	@NotEmpty(message ="Patient Last name must not be empty")
 	@Column(name = "LAST_NAME")
 	private String lastname;
 
@@ -45,37 +45,42 @@ public class PatientEntity implements Serializable {
 	@Column(name = "GENDER")
 	private Gender gender;
 
-	@Positive
+	@Positive(message ="Patient Age must be greater than 0")
 	@Column(name = "AGE")
 	private Integer age;
 
-	@Email
 	@Column(name = "EMAIL")
 	private String email;
 
+	@NotEmpty(message ="Address Line 1 must not be empty")
 	@Column(name = "ADDRESS_LINE1")
 	private String addressLine1;
+	@Nullable
 	@Column(name = "ADDRESS_LINE2")
 	private String addressLine2;
+	@NotEmpty(message ="City must not be empty")
 	@Column(name = "CITY")
 	private String city;
+	@NotEmpty(message ="State must not be empty")
 	@Column(name = "STATE")
 	private String state;
+	@NotEmpty(message ="Country must not be empty")
 	@Column(name = "COUNTRY")
 	private String country;
+	@NotEmpty(message ="ZipCode must not be empty")
 	@Column(name = "ZIP_CODE")
 	private String zipCode;
 
 	@Nullable
 	@Column(name = "LAST_APPOINTMENT")
-	@Past
+	@Past(message ="Last appointment date cannot be a future date")
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonbDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
 	private Date lastAppointment;
 
 	@Nullable
 	@Column(name = "UPCOMING_APPOINTMENT")
-	@FutureOrPresent
+	@FutureOrPresent(message ="Upcoming appointment must be present or future date")
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonbDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
 	private Date upcomingAppointment;

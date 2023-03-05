@@ -6,10 +6,16 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import java.util.TimeZone;
+import java.util.stream.Collectors;
 
 import jakarta.enterprise.event.Event;
 import jakarta.inject.Inject;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Valid;
+import jakarta.validation.ValidatorFactory;
+import jakarta.validation.constraints.Positive;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.PATCH;
@@ -28,11 +34,14 @@ public class PatientResource {
 	@Inject
 	private Event<AddAppointmentEvent> addAppointmentEvent;
 
+	@Inject
+	private ValidatorFactory validatorFactory;
+
 	// Get patient for patient_id
 	@GET
 	@Path("/{patient_id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public PatientEntity getPatientDetails(@PathParam("patient_id") Long patient_id) {
+	public PatientEntity getPatientDetails(@PathParam("patient_id") @Positive Long patient_id) {
 		var details = patientDetailService.getPatientDetails(patient_id);
 		return details;
 	}
@@ -41,7 +50,7 @@ public class PatientResource {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public PatientEntity savePatientDetails(PatientEntity patientEntity) {
+	public PatientEntity savePatientDetails(@Valid PatientEntity patientEntity) {
 		return patientDetailService.savePatientDetails(patientEntity);
 	}
 
@@ -81,7 +90,8 @@ public class PatientResource {
 	public PatientEntity bookAppointment(PatientEntity patient, @PathParam("patient_id") Long patient_id,
 			@PathParam("appointmentDate") String appointmentDate) throws Exception {
 		if (patient.getPatient_id() != patient_id) {
-			throw new Exception("Incorrect patient details, please ensure you sent the correct patient_id in the requests");
+			throw new Exception(
+					"Incorrect patient details, please ensure you sent the correct patient_id in the requests");
 		}
 		Date date = parseStringDate(appointmentDate);
 
@@ -89,8 +99,18 @@ public class PatientResource {
 		toBeUpdatedPatient.setUpcomingAppointment(date);
 
 		addAppointmentEvent.fire(new AddAppointmentEvent(toBeUpdatedPatient));
-		//TODO: send notification
+		// TODO: send notification
 		return patientDetailService.getPatientDetails(patient_id);
+	}
+
+	public void validateAndsavePatientDetails(PatientEntity patientEntity) {
+		Set<ConstraintViolation<PatientEntity>> violations = validatorFactory.getValidator().validate(patientEntity);
+		if (!violations.isEmpty()) {
+			var violationMessages = violations.stream().map(ConstraintViolation::getMessage).collect(Collectors.toList());
+			System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+			violationMessages.forEach(System.out::println);
+			
+		}
 	}
 
 }
