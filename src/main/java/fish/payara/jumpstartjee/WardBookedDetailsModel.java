@@ -18,9 +18,15 @@ public class WardBookedDetailsModel {
 	private WardType wardType;
 	private Date bookedFromDate;
 	private List<WardBookedDetailsModel> bookingDetails;
+	private double billCost;
 
 	@Inject
 	private WardService wardService;
+	
+	@Inject
+	private BillingService billingService;
+	
+	public WardBookedDetailsModel() {}
 
 	public WardBookedDetailsModel(String patientName, String patientEmail, WardType wardType, Date bookedFromDate) {
 		super();
@@ -32,7 +38,10 @@ public class WardBookedDetailsModel {
 
 	@PostConstruct
 	public void init() {
-		
+		bookingDetails = wardService
+				.getAllWardDetails().stream().map(ward -> new WardBookedDetailsModel(ward.getPatientName(),
+						ward.getPatientEmail(), ward.getWardType(), ward.getBookedFromDate()))
+				.collect(Collectors.toList());
 	}
 
 	public String getPatientName() {
@@ -71,11 +80,24 @@ public class WardBookedDetailsModel {
 		return bookingDetails;
 	}
 	
+	public double getBillCost() {
+		return billCost;
+	}
+	
+	public void setBillCost(double billCost) {
+		this.billCost = billCost;
+	}
+
 	public void refresh() {
 		bookingDetails = wardService
 				.getAllWardDetails().stream().map(ward -> new WardBookedDetailsModel(ward.getPatientName(),
 						ward.getPatientEmail(), ward.getWardType(), ward.getBookedFromDate()))
 				.collect(Collectors.toList());
+	}
+	
+	public void calculateBill(String patientName, WardType wardType, Date bookedFromDate) {
+		billCost = billingService.calculateBillForWard(wardType, bookedFromDate);
+		System.out.println("-----------------billCost------"+billCost);
 	}
 
 }

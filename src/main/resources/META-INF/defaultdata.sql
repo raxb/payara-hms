@@ -21,3 +21,5 @@ insert into PharmacyEntity (item_id, item_name, item_quantity, item_price) value
 create table if not exists ItemNotificationEntity(notify_id int not null, item_id int, email_id varchar(30), is_notified boolean, primary key (notify_id));
 
 create table if not exists WardEntity(ward_id int not null, patient_name varchar(255), patient_email varchar(30), ward_type varchar(30), booked_from_date date, primary key (ward_id));
+insert into WardEntity (ward_id, patient_name, patient_email, ward_type, booked_from_date) values (4001, 'Ben', 'ben@smith.com', 'GENERAL', '2023-03-01T08:00:00Z');
+insert into WardEntity (ward_id, patient_name, patient_email, ward_type, booked_from_date) values (4002, 'Kent', 'kent@clark.com', 'PRIVATE_PLUS', '2023-03-03T08:00:00Z');

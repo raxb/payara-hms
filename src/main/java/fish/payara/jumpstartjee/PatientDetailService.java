@@ -18,6 +18,7 @@ public class PatientDetailService {
 	@PersistenceContext
 	private EntityManager em;
 
+	@Logged
 	public PatientEntity getPatientDetails(Long patient_id) {
 		return em.find(PatientEntity.class, patient_id);
 	}
