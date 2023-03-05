@@ -24,6 +24,7 @@ public class PatientModel {
 	private String email;
 	@Nullable
 	private Date lastVisited;
+	private Date rescheduleDate;
 	private List<PatientModel> result;
 
 	@Inject
@@ -72,6 +73,10 @@ public class PatientModel {
 
 	public Date getLastVisited() {
 		return lastVisited;
+	}
+	
+	public Date getRescheduleDate() {
+		return rescheduleDate;
 	}
 
 	public List<PatientModel> getPatientsForToday() {
