@@ -19,3 +19,5 @@ insert into PharmacyEntity (item_id, item_name, item_quantity, item_price) value
 insert into PharmacyEntity (item_id, item_name, item_quantity, item_price) values (2010, 'Metformin', 51, 98.78);
 
 create table if not exists ItemNotificationEntity(notify_id int not null, item_id int, email_id varchar(30), is_notified boolean, primary key (notify_id));
+
+create table if not exists WardEntity(ward_id int not null, patient_name varchar(255), patient_email varchar(30), ward_type varchar(30), booked_from_date date, primary key (ward_id));

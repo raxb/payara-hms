@@ -35,21 +35,36 @@ public class PatientDetailService {
 	}
 
 	public List<PatientEntity> patientsAppointmentForDay(Date appointmentDate, Date eod) {
-		return em.createQuery(
-				"select p from PatientEntity p where p.upcomingAppointment between :appointmentDate and :eod",
-				PatientEntity.class)
+		return em
+				.createQuery(
+						"select p from PatientEntity p where p.upcomingAppointment between :appointmentDate and :eod",
+						PatientEntity.class)
 				.setParameter("appointmentDate", appointmentDate, TemporalType.TIMESTAMP)
-				.setParameter("eod", eod, TemporalType.TIMESTAMP)
-				.getResultList();
+				.setParameter("eod", eod, TemporalType.TIMESTAMP).getResultList();
 	}
 
 	public void updateAppointment(@Observes AddAppointmentEvent addAppointmentEvent) {
 		em.merge(addAppointmentEvent.getPatientEntity());
 	}
-	
+
 	public Optional<PatientEntity> patientExistsWithEmail(String emailId) {
 		return em.createQuery("select patient from PatientEntity patient where patient.email = :emailId",
 				PatientEntity.class).setParameter("emailId", emailId).getResultList().stream().findFirst();
+	}
+
+	public boolean getPatientWithNameAndEmail(String patientName, String patientEmail) {
+		var isPresent = false;
+		try {
+			var patientToBookWard = em.createQuery(
+					"select patient from PatientEntity patient where patient.firstname = :patientName and patient.email = :patientEmail",
+					PatientEntity.class).setParameter("patientName", patientName)
+					.setParameter("patientEmail", patientEmail).getSingleResult();
+			if (patientToBookWard.getPatient_id() != null)
+				isPresent = true;
+		} catch (Exception e) {
+			isPresent = false;
+		}
+		return isPresent;
 	}
 
 }

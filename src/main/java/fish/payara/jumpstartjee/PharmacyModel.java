@@ -90,7 +90,6 @@ public class PharmacyModel {
 			throw new Exception("\n There is no patient registered with the emailId " + notifyForEmail +"\n Please register the patient details!");
 		}
 		
-		System.out.println("----------------------PharmacyModel.addToNotification(Long) " +itemId+" "+notifyForEmail);
 		notificationService.addToNotify(itemId, notifyForEmail);
 	}
 

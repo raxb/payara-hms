@@ -2,6 +2,7 @@ package fish.payara.jumpstartjee;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
@@ -10,25 +11,28 @@ import jakarta.inject.Named;
 
 @RequestScoped
 @Named
-public class WardBookingModel {
+public class WardBookedDetailsModel {
 
 	private String patientName;
 	private String patientEmail;
 	private WardType wardType;
 	private Date bookedFromDate;
-	private List<WardBookingModel> bookingDetails;
-
-	private WardEntity wardEntity = new WardEntity();
+	private List<WardBookedDetailsModel> bookingDetails;
 
 	@Inject
 	private WardService wardService;
 
-	@PostConstruct
-	public void init() {
+	public WardBookedDetailsModel(String patientName, String patientEmail, WardType wardType, Date bookedFromDate) {
+		super();
+		this.patientName = patientName;
+		this.patientEmail = patientEmail;
+		this.wardType = wardType;
+		this.bookedFromDate = bookedFromDate;
 	}
 
-	public WardEntity getWardEntity() {
-		return wardEntity;
+	@PostConstruct
+	public void init() {
+		
 	}
 
 	public String getPatientName() {
@@ -63,14 +67,15 @@ public class WardBookingModel {
 		this.bookedFromDate = bookedFromDate;
 	}
 
-	public List<WardBookingModel> getBookingDetails() {
+	public List<WardBookedDetailsModel> getBookingDetails() {
 		return bookingDetails;
 	}
-
-	public void bookWardForPatient() {
-		System.out.println("----------wardbookingmodel----------" + wardEntity.getPatientName() + " "
-				+ wardEntity.getPatientEmail() + " " + wardEntity.getWardType());
-		wardService.bookWard(wardEntity);
+	
+	public void refresh() {
+		bookingDetails = wardService
+				.getAllWardDetails().stream().map(ward -> new WardBookedDetailsModel(ward.getPatientName(),
+						ward.getPatientEmail(), ward.getWardType(), ward.getBookedFromDate()))
+				.collect(Collectors.toList());
 	}
 
 }

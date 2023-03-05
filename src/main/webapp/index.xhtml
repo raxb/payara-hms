@@ -12,7 +12,7 @@
 </h:head>
 
 <h:body style="background-color:powderblue;">
-	<h2>Patient Appointment for today</h2>
+	<h2>Today's Appointments</h2>
 	<h:form>
 		<h:commandButton id="getPatients"
 			actionListener="#{patientModel.getPatientsForToday()}"
@@ -48,24 +48,36 @@
 			</table>
 		</h:panelGroup>
 	</h:form>
-	<h2>Ward Availability</h2>
-
-	<h:form>
-		Patient's Name: <h:inputText id="patientNameForBooking" value="#{wardBookingModel.patientNameForBooking}" />
+	<h2>Ward Booking</h2>
+	 <h:form>
+    <h:commandLink value="Get Wards Booked Details" action="wardsBooked.xhtml" />
+    </h:form><br /><br/>
+	
+	<h:messages style="color:red"/>
+	<h:form id="bookWard">
+		Patient's Name: <h:inputText value="#{wardBookingModel.wardEntity.patientName}" label="Patient's Name">
+			<f:validateBean validationGroups="jakarta.validation.groups.Default,fish.payara.jumpstartjee.ValidWardBookingGroup" />
+		</h:inputText>
 		<br /><br/>
-		Patient's Registered EmailId: <h:inputText id="patientEmailId" value="#{wardBookingModel.patientEmailId}" />
+		Patient's Registered EmailId: <h:inputText value="#{wardBookingModel.wardEntity.patientEmail}" label="Patient's Registered EmailId">
+			<f:validateBean validationGroups="jakarta.validation.groups.Default,fish.payara.jumpstartjee.ValidWardBookingGroup" />
+		</h:inputText>
 			<br /><br/>
-		Ward Type: <h:selectOneMenu value="#{wardBookingModel.wardType}">
+		Ward Type: <h:selectOneMenu value="#{wardBookingModel.wardEntity.wardType}">
 				<f:selectItem itemValue="GENERAL" itemLabel="Standard Ward" />
 				<f:selectItem itemValue="PRIVATE" itemLabel="Personal Ward" />
 				<f:selectItem itemValue="PRIVATE_PLUS" itemLabel="Personal Comfy Ward" />
 			</h:selectOneMenu>
 			<br /><br/>
-		Book from Date: <input type="date" jsf:value="#{wardBookingModel.bookedFromDate}" />
+		Book from Date: <input type="date" jsf:value="#{wardBookingModel.wardEntity.bookedFromDate}" >
+			<f:convertDateTime pattern="yyyy-MM-dd"/>
+		</input>
 		<br /><br/>
 	
-			<h:commandButton value="Submit" action="result" />  <h:commandButton value="Reset" type="reset" />
-
+		<f:validateWholeBean value='#{wardBookingModel.wardEntity}' validationGroups="fish.payara.jumpstartjee.ValidWardBookingGroup" />
+		<h:commandButton actionListener="#{wardBookingModel.bookWardForPatient()}" value="Book a Ward">
+			<!-- <f:ajax execute="bookWard @this" render="wardAvailability" /> -->
+		</h:commandButton>
 	</h:form>
 
 	<h2>Pharmacy Inventory</h2>
