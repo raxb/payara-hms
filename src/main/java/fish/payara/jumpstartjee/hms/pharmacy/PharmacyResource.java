@@ -1,7 +1,8 @@
-package fish.payara.jumpstartjee;
+package fish.payara.jumpstartjee.hms.pharmacy;
 
 import java.util.List;
 
+import fish.payara.jumpstartjee.AddItemEvent;
 import jakarta.enterprise.event.Event;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;

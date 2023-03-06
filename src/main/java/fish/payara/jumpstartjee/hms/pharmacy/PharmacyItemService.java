@@ -1,7 +1,8 @@
-package fish.payara.jumpstartjee;
+package fish.payara.jumpstartjee.hms.pharmacy;
 
 import java.util.List;
 
+import fish.payara.jumpstartjee.LoggedAndTimed;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;

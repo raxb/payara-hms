@@ -1,4 +1,4 @@
-package fish.payara.jumpstartjee;
+package fish.payara.jumpstartjee.hms.pharmacy;
 
 import java.io.Serializable;
 

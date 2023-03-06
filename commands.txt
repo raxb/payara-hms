@@ -30,3 +30,16 @@ curl --location --request PATCH 'http://localhost:8080/jee-jumpstart/api/patient
     "patient_id": 1001,
     "upcomingAppointment": "2023-03-15T18:00:00Z"
 }'
+
+#Pharmacy
+curl --location --request GET 'http://localhost:8080/jee-jumpstart/api/pharmacy/item/Ativan'
+
+curl --location --request POST 'http://localhost:8080/jee-jumpstart/api/pharmacy/addItem/5' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+        "itemId": 2001,
+        "itemName": "Ativan",
+        "itemPrice": 10.5,
+        "itemQuantity": 125
+    }'
+curl --location --request GET 'http://localhost:8080/jee-jumpstart/api/pharmacy/item/Ativan'

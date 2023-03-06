@@ -1,5 +1,7 @@
 package fish.payara.jumpstartjee;
 
+import fish.payara.jumpstartjee.hms.pharmacy.PharmacyEntity;
+
 public class AddItemEvent {
 
 	private PharmacyEntity pharmacyEntity;
