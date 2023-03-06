@@ -20,6 +20,7 @@ Single POM module structured and packaged with respect to the domain-models avai
 Also, refer to ( _/payara-hms/commands.txt_ ) file in the project module for the REST endpoint details and corresponding request types with JSON body.
 
 ---
+
 ## 1. Patient Module
 (necessary MediaTypes are specified for each of the Path provided REST endpoints for Producing and Consuming respectively on the resource under query)
    1. rest client to get the details of the patient given  _PathParam_  typed patient_id from the pre-loaded data setup<br/><br/>
