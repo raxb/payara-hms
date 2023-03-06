@@ -1,4 +1,4 @@
-package fish.payara.jumpstartjee;
+package fish.payara.jumpstartjee.hms.utils;
 
 import java.util.List;
 

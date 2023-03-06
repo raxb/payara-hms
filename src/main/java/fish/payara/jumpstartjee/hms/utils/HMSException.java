@@ -1,4 +1,4 @@
-package fish.payara.jumpstartjee;
+package fish.payara.jumpstartjee.hms.utils;
 
 public class HMSException extends RuntimeException {
 	

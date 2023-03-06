@@ -2,7 +2,7 @@ package fish.payara.jumpstartjee.hms.ward;
 
 import java.util.List;
 
-import fish.payara.jumpstartjee.LoggedAndTimed;
+import fish.payara.jumpstartjee.hms.utils.LoggedAndTimed;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;

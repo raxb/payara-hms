@@ -4,8 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import fish.payara.jumpstartjee.AddAppointmentEvent;
-import fish.payara.jumpstartjee.LoggedAndTimed;
+import fish.payara.jumpstartjee.hms.utils.AddAppointmentEvent;
+import fish.payara.jumpstartjee.hms.utils.LoggedAndTimed;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.event.Observes;
 import jakarta.persistence.EntityManager;

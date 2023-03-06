@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import fish.payara.jumpstartjee.LoggedAndTimed;
+import fish.payara.jumpstartjee.hms.utils.LoggedAndTimed;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped

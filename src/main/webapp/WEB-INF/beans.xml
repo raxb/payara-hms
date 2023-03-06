@@ -6,6 +6,6 @@ https://jakarta.ee/xml/ns/jakartaee/beans_3_0.xsd"
 	bean-discovery-mode="annotated">
 
 	<interceptors>
-		<class>fish.payara.jumpstartjee.LoggingInterceptor</class>
+		<class>fish.payara.jumpstartjee.hms.utils.LoggingInterceptor</class>
 	</interceptors>
 </beans>

@@ -7,8 +7,7 @@ import java.util.List;
 import java.util.TimeZone;
 import java.util.stream.Collectors;
 
-import fish.payara.jumpstartjee.AddAppointmentEvent;
-import fish.payara.jumpstartjee.Gender;
+import fish.payara.jumpstartjee.hms.utils.AddAppointmentEvent;
 import jakarta.annotation.Nullable;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;

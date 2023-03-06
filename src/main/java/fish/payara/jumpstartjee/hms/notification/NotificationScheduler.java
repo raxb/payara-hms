@@ -1,6 +1,6 @@
 package fish.payara.jumpstartjee.hms.notification;
 
-import fish.payara.jumpstartjee.LoggedAndTimed;
+import fish.payara.jumpstartjee.hms.utils.LoggedAndTimed;
 import jakarta.ejb.Schedule;
 import jakarta.ejb.Singleton;
 import jakarta.persistence.EntityManager;

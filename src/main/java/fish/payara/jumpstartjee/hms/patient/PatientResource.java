@@ -10,8 +10,8 @@ import java.util.Set;
 import java.util.TimeZone;
 import java.util.stream.Collectors;
 
-import fish.payara.jumpstartjee.AddAppointmentEvent;
-import fish.payara.jumpstartjee.ValidationViolationException;
+import fish.payara.jumpstartjee.hms.utils.AddAppointmentEvent;
+import fish.payara.jumpstartjee.hms.utils.ValidationViolationException;
 import jakarta.enterprise.event.Event;
 import jakarta.inject.Inject;
 import jakarta.validation.ConstraintViolation;
