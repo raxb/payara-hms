@@ -1,9 +1,11 @@
-package fish.payara.jumpstartjee;
+package fish.payara.jumpstartjee.hms.patient;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import fish.payara.jumpstartjee.AddAppointmentEvent;
+import fish.payara.jumpstartjee.LoggedAndTimed;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.event.Observes;
 import jakarta.persistence.EntityManager;

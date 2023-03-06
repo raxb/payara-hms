@@ -1,9 +1,11 @@
-package fish.payara.jumpstartjee;
+package fish.payara.jumpstartjee.hms.patient;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+import fish.payara.jumpstartjee.Gender;
+import fish.payara.jumpstartjee.ValidPatient;
 import jakarta.annotation.Nullable;
 import jakarta.json.bind.annotation.JsonbDateFormat;
 import jakarta.persistence.Column;

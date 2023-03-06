@@ -1,4 +1,4 @@
-package fish.payara.jumpstartjee;
+package fish.payara.jumpstartjee.hms.patient;
 
 import java.text.SimpleDateFormat;
 import java.time.temporal.ChronoUnit;
@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.TimeZone;
 import java.util.stream.Collectors;
 
+import fish.payara.jumpstartjee.AddAppointmentEvent;
+import fish.payara.jumpstartjee.Gender;
 import jakarta.annotation.Nullable;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;

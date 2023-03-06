@@ -1,7 +1,8 @@
-package fish.payara.jumpstartjee;
+package fish.payara.jumpstartjee.hms.patient;
 
 import java.util.regex.Pattern;
 
+import fish.payara.jumpstartjee.ValidPatient;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 

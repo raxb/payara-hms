@@ -1,5 +1,6 @@
 package fish.payara.jumpstartjee;
 
+import fish.payara.jumpstartjee.hms.patient.PatientDetailService;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.validation.ConstraintValidator;

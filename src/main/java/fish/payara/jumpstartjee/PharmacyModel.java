@@ -3,6 +3,7 @@ package fish.payara.jumpstartjee;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import fish.payara.jumpstartjee.hms.patient.PatientDetailService;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;

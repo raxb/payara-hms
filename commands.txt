@@ -1,0 +1,32 @@
+# Patient REST endpoint
+curl --location --request GET 'http://localhost:8080/jee-jumpstart/api/patient/1001'
+
+curl --location --request POST 'http://localhost:8080/jee-jumpstart/api/patient' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "addressLine1": "523 Park Venue Block 2",
+    "addressLine2": "123 Downtown vista",
+    "age": 36,
+    "city": "British Columbia",
+    "country": "CA",
+    "email": "mark_williams@gmail.com",
+    "firstname": "Mark",
+    "gender": "MALE",
+    "lastAppointment": "2021-02-08T00:00:00Z",
+    "lastname": "WilliamsT",
+    "state": "British Columbia",
+    "upcomingAppointment": "2023-03-15T18:00:00Z",
+    "zipCode": "531567"
+}'
+
+curl --location --request GET 'http://localhost:8080/jee-jumpstart/api/patient/allPatients'
+
+curl --location --request GET 'http://localhost:8080/jee-jumpstart/api/patient/appointments/2023-03-05T00:00:00Z'
+
+curl --location --request PATCH 'http://localhost:8080/jee-jumpstart/api/patient/1001/2023-03-16T10:00:00Z' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+
+    "patient_id": 1001,
+    "upcomingAppointment": "2023-03-15T18:00:00Z"
+}'

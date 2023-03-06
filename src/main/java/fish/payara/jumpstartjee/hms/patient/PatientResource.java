@@ -1,4 +1,4 @@
-package fish.payara.jumpstartjee;
+package fish.payara.jumpstartjee.hms.patient;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,6 +10,8 @@ import java.util.Set;
 import java.util.TimeZone;
 import java.util.stream.Collectors;
 
+import fish.payara.jumpstartjee.AddAppointmentEvent;
+import fish.payara.jumpstartjee.ValidationViolationException;
 import jakarta.enterprise.event.Event;
 import jakarta.inject.Inject;
 import jakarta.validation.ConstraintViolation;
@@ -89,13 +91,13 @@ public class PatientResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public PatientEntity bookAppointment(PatientEntity patient, @PathParam("patient_id") Long patient_id,
 			@PathParam("appointmentDate") String appointmentDate) throws Exception {
-		if (patient.getPatient_id() != patient_id) {
+		if (patientDetailService.getPatientDetails(patient_id) == null) {
 			throw new Exception(
 					"Incorrect patient details, please ensure you sent the correct patient_id in the requests");
 		}
 		Date date = parseStringDate(appointmentDate);
 
-		PatientEntity toBeUpdatedPatient = patientDetailService.getPatientDetails(patient.getPatient_id());
+		PatientEntity toBeUpdatedPatient = patientDetailService.getPatientDetails(patient_id);
 		toBeUpdatedPatient.setUpcomingAppointment(date);
 
 		addAppointmentEvent.fire(new AddAppointmentEvent(toBeUpdatedPatient));
@@ -107,8 +109,7 @@ public class PatientResource {
 		Set<ConstraintViolation<PatientEntity>> violations = validatorFactory.getValidator().validate(patientEntity);
 		if (!violations.isEmpty()) {
 			var violationMessages = violations.stream().map(ConstraintViolation::getMessage).collect(Collectors.toList());
-			System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-			violationMessages.forEach(System.out::println);
+			throw new ValidationViolationException(violationMessages);
 			
 		}
 	}

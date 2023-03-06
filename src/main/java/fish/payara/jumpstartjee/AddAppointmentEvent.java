@@ -1,5 +1,7 @@
 package fish.payara.jumpstartjee;
 
+import fish.payara.jumpstartjee.hms.patient.PatientEntity;
+
 public class AddAppointmentEvent {
 
 	private PatientEntity patientEntity;
