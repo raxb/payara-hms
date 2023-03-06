@@ -1,4 +1,4 @@
-package fish.payara.jumpstartjee;
+package fish.payara.jumpstartjee.hms.ward;
 
 import java.io.Serializable;
 import java.util.Date;

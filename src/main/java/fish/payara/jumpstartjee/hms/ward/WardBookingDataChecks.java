@@ -1,4 +1,4 @@
-package fish.payara.jumpstartjee;
+package fish.payara.jumpstartjee.hms.ward;
 
 import fish.payara.jumpstartjee.hms.patient.PatientDetailService;
 import jakarta.enterprise.context.RequestScoped;

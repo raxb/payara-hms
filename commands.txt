@@ -42,4 +42,6 @@ curl --location --request POST 'http://localhost:8080/jee-jumpstart/api/pharmacy
         "itemPrice": 10.5,
         "itemQuantity": 125
     }'
-curl --location --request GET 'http://localhost:8080/jee-jumpstart/api/pharmacy/item/Ativan'
+
+#Ward
+curl --location --request GET 'http://localhost:8080/jee-jumpstart/api/ward'

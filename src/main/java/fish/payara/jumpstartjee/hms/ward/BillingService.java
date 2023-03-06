@@ -1,9 +1,10 @@
-package fish.payara.jumpstartjee;
+package fish.payara.jumpstartjee.hms.ward;
 
 import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import fish.payara.jumpstartjee.LoggedAndTimed;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped

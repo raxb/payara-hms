@@ -58,11 +58,11 @@
 	<h:messages style="color:red"/>
 	<h:form id="bookWard">
 		Patient's Name: <h:inputText value="#{wardBookingModel.wardEntity.patientName}" label="Patient's Name">
-			<f:validateBean validationGroups="jakarta.validation.groups.Default,fish.payara.jumpstartjee.ValidWardBookingGroup" />
+			<f:validateBean validationGroups="jakarta.validation.groups.Default,fish.payara.jumpstartjee.hms.ward.ValidWardBookingGroup" />
 		</h:inputText>
 		<br /><br/>
 		Patient's Registered EmailId: <h:inputText value="#{wardBookingModel.wardEntity.patientEmail}" label="Patient's Registered EmailId">
-			<f:validateBean validationGroups="jakarta.validation.groups.Default,fish.payara.jumpstartjee.ValidWardBookingGroup" />
+			<f:validateBean validationGroups="jakarta.validation.groups.Default,fish.payara.jumpstartjee.hms.ward.ValidWardBookingGroup" />
 		</h:inputText>
 			<br /><br/>
 		Ward Type: <h:selectOneMenu value="#{wardBookingModel.wardEntity.wardType}">
@@ -76,7 +76,7 @@
 		</input>
 		<br /><br/>
 	
-		<f:validateWholeBean value='#{wardBookingModel.wardEntity}' validationGroups="fish.payara.jumpstartjee.ValidWardBookingGroup" />
+		<f:validateWholeBean value='#{wardBookingModel.wardEntity}' validationGroups="fish.payara.jumpstartjee.hms.ward.ValidWardBookingGroup" />
 		<h:commandButton actionListener="#{wardBookingModel.bookWardForPatient()}" value="Book a Ward">
 			<!-- <f:ajax execute="bookWard @this" render="wardAvailability" /> -->
 		</h:commandButton>
