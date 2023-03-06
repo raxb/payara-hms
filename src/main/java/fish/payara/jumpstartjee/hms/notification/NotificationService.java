@@ -1,8 +1,10 @@
-package fish.payara.jumpstartjee;
+package fish.payara.jumpstartjee.hms.notification;
 
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import fish.payara.jumpstartjee.AddItemEvent;
+import fish.payara.jumpstartjee.LoggedAndTimed;
 import jakarta.ejb.Schedule;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.event.Observes;

@@ -3,7 +3,7 @@ package fish.payara.jumpstartjee.hms.pharmacy;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import fish.payara.jumpstartjee.NotificationService;
+import fish.payara.jumpstartjee.hms.notification.NotificationService;
 import fish.payara.jumpstartjee.hms.patient.PatientDetailService;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
