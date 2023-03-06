@@ -122,6 +122,7 @@ And a rest client for adding a new item/updating the item quantity such in turn 
 
 ---
 
-There are a few open issues, ie., 
+There are a few open issues.
+Please anticipate the issues.,
 like the ajax form command button execution resets the page data,
-And no pages for confirmation redirection.
+and no pages for confirmation redirection and exception handling redirects.
