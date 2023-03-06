@@ -117,4 +117,11 @@ And a rest client for adding a new item/updating the item quantity such in turn 
     24. Interceptors
     25. JSON Parsing
     26. Bean validations
-    27. Standard Tag Libraries
+    27. Standard Tag Libraries 
+
+
+---
+
+There are a few open issues, ie., 
+like the ajax form command button execution resets the page data,
+And no pages for confirmation redirection.
