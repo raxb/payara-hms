@@ -38,7 +38,7 @@ Also, refer to ( _/payara-hms/commands.txt_ ) file in the project module for the
      
 ---
 
-##2. Pharmacy Inventory with Notification 
+## 2. Pharmacy Inventory with Notification 
 (necessary MediaTypes are specified for each of the Path provided REST endpoints for Producing and Consuming respectively on the resource under query)
    1. rest client to search pharmacy with item name (as  _%item name%_ ) given PathParam typed item name from the pre-loaded data setup.
    **Room for improvement** - can return Response such that the results can be added to body and return appropriate HTTP status codes by building the body. (commented out)<br/><br/>
@@ -66,7 +66,7 @@ And a rest client for adding a new item/updating the item quantity such in turn 
 		
 ---
 
-##3. Notifications Module
+## 3. Notifications Module
    1. For a pharmacy item stock, a registered patient's email ID can be provided to receive notification on item changes - entity to maintain the same _fish.payara.jumpstartjee.hms.notification.ItemNotificationEntity_ <br/><br/>
    2. _fish.payara.jumpstartjee.hms.notification.NotificationScheduler_ - is a Singleton class with a  _scheduler_  specification that executes the method on every 30th minute 5th of second triggering - _fish.payara.jumpstartjee.hms.notification.NotificationScheduler.automaticallyScheduled()_
    **Room for improvement** we can configure a Jakarta Messaging/Mail modules to send actual mail to the intend recipients
@@ -75,7 +75,7 @@ And a rest client for adding a new item/updating the item quantity such in turn 
        
 ---
 
-##4. Ward Booking Information Module 
+## 4. Ward Booking Information Module 
 (necessary MediaTypes are specified for each of the Path provided REST endpoints for Producing and Consuming respectively on the resource under query)
    1. rest client to get all the booked ward details with patient name, email and date occupied.<br/><br/>
    2. _fish.payara.jumpstartjee.hms.ward.WardService_ -  is the  _ApplicationScoped_  Service layer and interacts with the database managing the transaction on the persistence context, commit on success else rollback the transaction process<br/><br/>
