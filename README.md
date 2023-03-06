@@ -1,21 +1,26 @@
-### About
+# About
 **Payara Hospital Management System (HMS)**
 
-#### Runtime
+## Runtime
 The project uses Payara Server 6 Community running on JDK 11.
 
-### Running the project
+## Running the project
 Perform _mvn clean package_, and start the payara server and deploy the application.  
 The application can be accessed via [http://localhost:8080/jee-jumpstart/index.xhtml](http://localhost:8080/jee-jumpstart/index.xhtml) from browser
 and [http://localhost:8080/jee-jumpstart/*](http://localhost:8080/jee-jumpstart/*) correspondingly for the REST endpoint (please refer  _/payara-hms/commands.txt_  )
+
 ---
+
 A one place solution (one page to run them all) for the hospital staff to monitor the status of hospital operations.  
 As a hospital staff, who is having an access to the HMS dashboard will be able to obtain details on the patient appointments, pharmacy stock details, notification on stock availability, ward booking and associate cost calculation.
+
 ---
+
 Single POM module structured and packaged with respect to the domain-models available in a typical hospital system, the data is pre-created and loaded to  _in memory database H2_  as part of the application start up from the script at  _/payara-hms/src/main/resources/META-INF/defaultdata.sql_   
 Also, refer to ( _/payara-hms/commands.txt_ ) file in the project module for the REST endpoint details and corresponding request types with JSON body.
+
 ---
-### 1. Patient Module
+## 1. Patient Module
 (necessary MediaTypes are specified for each of the Path provided REST endpoints for Producing and Consuming respectively on the resource under query)
    1. rest client to get the details of the patient given  _PathParam_  typed patient_id from the pre-loaded data setup<br/><br/>
    2. rest client to save patient details with JSON request and validation on the entity with custom annotation  _fish.payara.jumpstartjee.ValidPatient_  enforcing additional constraint validations via  _fish.payara.jumpstartjee.hms.patient.PatientDataChecks_  (patient age between 0 and 150, with a valid email id syntax)<br/><br/>
@@ -32,7 +37,7 @@ Also, refer to ( _/payara-hms/commands.txt_ ) file in the project module for the
      
 ---
 
-###2. Pharmacy Inventory with Notification 
+##2. Pharmacy Inventory with Notification 
 (necessary MediaTypes are specified for each of the Path provided REST endpoints for Producing and Consuming respectively on the resource under query)
    1. rest client to search pharmacy with item name (as  _%item name%_ ) given PathParam typed item name from the pre-loaded data setup.
    **Room for improvement** - can return Response such that the results can be added to body and return appropriate HTTP status codes by building the body. (commented out)<br/><br/>
@@ -60,7 +65,7 @@ And a rest client for adding a new item/updating the item quantity such in turn 
 		
 ---
 
-###3. Notifications Module
+##3. Notifications Module
    1. For a pharmacy item stock, a registered patient's email ID can be provided to receive notification on item changes - entity to maintain the same _fish.payara.jumpstartjee.hms.notification.ItemNotificationEntity_ <br/><br/>
    2. _fish.payara.jumpstartjee.hms.notification.NotificationScheduler_ - is a Singleton class with a  _scheduler_  specification that executes the method on every 30th minute 5th of second triggering - _fish.payara.jumpstartjee.hms.notification.NotificationScheduler.automaticallyScheduled()_
    **Room for improvement** we can configure a Jakarta Messaging/Mail modules to send actual mail to the intend recipients
@@ -69,7 +74,7 @@ And a rest client for adding a new item/updating the item quantity such in turn 
        
 ---
 
-###4. Ward Booking Information Module 
+##4. Ward Booking Information Module 
 (necessary MediaTypes are specified for each of the Path provided REST endpoints for Producing and Consuming respectively on the resource under query)
    1. rest client to get all the booked ward details with patient name, email and date occupied.<br/><br/>
    2. _fish.payara.jumpstartjee.hms.ward.WardService_ -  is the  _ApplicationScoped_  Service layer and interacts with the database managing the transaction on the persistence context, commit on success else rollback the transaction process<br/><br/>
@@ -83,7 +88,7 @@ And a rest client for adding a new item/updating the item quantity such in turn 
 	
 ---
 	
-### Technicals:
+## Technicals:
 
     1. Path variables
     2. Path
