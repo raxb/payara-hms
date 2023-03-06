@@ -11,7 +11,7 @@ import jakarta.interceptor.InvocationContext;
 import lombok.extern.java.Log;
 
 @Interceptor
-@Logged
+@LoggedAndTimed
 @Log
 public class LoggingInterceptor {
 	
@@ -20,13 +20,15 @@ public class LoggingInterceptor {
 	@AroundInvoke
 	public Object log(InvocationContext context) throws Exception {
 		
+		long start = System.currentTimeMillis();
 		logger.info("Before ",context.getMethod());
-		log.log(Level.INFO, () -> "<-- Before --> " + context.getMethod());
+		log.log(Level.INFO, () -> "<=== Before ===> " + context.getMethod());
 		System.out.println("Entering method: "
                 + context.getMethod().getName() + " in class "
                 + context.getMethod().getDeclaringClass().getName());
 		Object result = context.proceed();
-		log.log(Level.INFO, () -> "<-- After --> " + context.getMethod());
+		log.log(Level.INFO, () -> "<=== After ===> " + context.getMethod());
+		log.log(Level.INFO, ()->  "<=== calculated in ===>" + (System.currentTimeMillis() - start) + "ms");
 
 		return result;
 

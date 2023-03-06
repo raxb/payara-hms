@@ -68,8 +68,6 @@ public class WardBookingModel {
 	}
 
 	public void bookWardForPatient() {
-		System.out.println("----------wardbookingmodel----------" + wardEntity.getPatientName() + " "
-				+ wardEntity.getPatientEmail() + " " + wardEntity.getWardType());
 		wardService.bookWard(wardEntity);
 	}
 

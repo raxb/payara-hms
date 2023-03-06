@@ -9,6 +9,7 @@ import jakarta.transaction.Transactional;
 
 @Transactional
 @ApplicationScoped
+@LoggedAndTimed
 public class PharmacyItemService {
 
 	@PersistenceContext

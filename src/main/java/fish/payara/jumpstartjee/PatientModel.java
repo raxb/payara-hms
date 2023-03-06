@@ -101,7 +101,6 @@ public class PatientModel {
 	}
 	
 	public void rescheduleAppointment(Long patient_id) {
-		System.out.println("===================="+patient_id);
 		PatientEntity toBeUpdatedPatient = patientDetailService.getPatientDetails(patient_id);
 		toBeUpdatedPatient.setUpcomingAppointment(rescheduleDate);
 

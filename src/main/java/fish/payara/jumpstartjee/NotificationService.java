@@ -12,6 +12,7 @@ import jakarta.transaction.Transactional;
 
 @Transactional
 @ApplicationScoped
+@LoggedAndTimed
 public class NotificationService {
 	
 	@PersistenceContext
@@ -30,7 +31,6 @@ public class NotificationService {
 	}
 
 	public void addToNotify(Long itemId, String notifyForEmail) {
-		System.out.println("----------------------NotificationService.addToNotify(Long, String) "+itemId+"---"+notifyForEmail);
 		ItemNotificationEntity itemNotificationEntity = new ItemNotificationEntity(itemId, notifyForEmail, false);
 		em.persist(itemNotificationEntity);
 		System.out.println(itemNotificationEntity.toString());

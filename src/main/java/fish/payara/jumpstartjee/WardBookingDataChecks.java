@@ -18,7 +18,6 @@ public class WardBookingDataChecks implements ConstraintValidator<ValidWardBooki
 
 	@Override
 	public boolean isValid(WardEntity wardEntity, ConstraintValidatorContext context) {
-		System.out.println("-------------------------------------------"+wardEntity.getPatientName()+"////\\\\"+wardEntity.getPatientEmail());
 		return patientDetailService.getPatientWithNameAndEmail(wardEntity.getPatientName(), wardEntity.getPatientEmail());
 	}
 }

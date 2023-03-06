@@ -18,16 +18,18 @@ public class PatientDetailService {
 	@PersistenceContext
 	private EntityManager em;
 
-	@Logged
+	@LoggedAndTimed
 	public PatientEntity getPatientDetails(Long patient_id) {
 		return em.find(PatientEntity.class, patient_id);
 	}
 
+	@LoggedAndTimed
 	public PatientEntity savePatientDetails(PatientEntity patientEntity) {
 		em.persist(patientEntity);
 		return patientEntity;
 	}
 
+	@LoggedAndTimed
 	public List<PatientEntity> allPatientsByNameAndId() {
 		return em
 				.createQuery("select p.patient_id, p.firstname, p.lastname, p.upcomingAppointment from PatientEntity p",
@@ -35,6 +37,7 @@ public class PatientDetailService {
 				.getResultList();
 	}
 
+	@LoggedAndTimed
 	public List<PatientEntity> patientsAppointmentForDay(Date appointmentDate, Date eod) {
 		return em
 				.createQuery(
@@ -48,6 +51,7 @@ public class PatientDetailService {
 		em.merge(addAppointmentEvent.getPatientEntity());
 	}
 
+	@LoggedAndTimed
 	public Optional<PatientEntity> patientExistsWithEmail(String emailId) {
 		return em.createQuery("select patient from PatientEntity patient where patient.email = :emailId",
 				PatientEntity.class).setParameter("emailId", emailId).getResultList().stream().findFirst();

@@ -14,15 +14,11 @@ public class WardResource {
 	@Inject
 	private WardService wardService;
 	
-	//book ward
-	
 	//available wards
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<WardEntity> getWardDetails(){
 		return wardService.getAllWardDetails();
 	}
-	
-	//occupied wards
 
 }

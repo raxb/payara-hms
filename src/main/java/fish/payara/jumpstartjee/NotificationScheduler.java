@@ -11,6 +11,7 @@ public class NotificationScheduler {
 	@PersistenceContext
 	private EntityManager em;
 	
+	@LoggedAndTimed
 	@Schedule(second = "*/5", minute = "*/30", hour = "*", persistent=false)
     public void automaticallyScheduled() {
 		System.out.println("===============> Notification Scheduler <===============");

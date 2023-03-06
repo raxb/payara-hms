@@ -15,12 +15,11 @@ public class BillingService {
 		    Map.entry(WardType.PRIVATE_PLUS, 20.00)
 		);
 	
+	@LoggedAndTimed
 	public double calculateBillForWard(WardType wardType, Date numberOfDays) {
 		Date today = new Date();
 		var diff = today.getTime() - numberOfDays.getTime();
-		System.out.println("--------------diff-------"+diff);
 		var daysBetween = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
-		System.out.println("--------------daysBetween-------"+daysBetween);
 		
 		return wardCostsPerDay.get(wardType) * daysBetween;
 	}

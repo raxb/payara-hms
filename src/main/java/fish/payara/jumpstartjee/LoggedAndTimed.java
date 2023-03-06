@@ -12,6 +12,6 @@ import jakarta.interceptor.InterceptorBinding;
 @InterceptorBinding
 @Retention(RUNTIME)
 @Target({ TYPE, METHOD })
-public @interface Logged {
+public @interface LoggedAndTimed {
 
 }

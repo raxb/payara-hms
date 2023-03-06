@@ -97,7 +97,6 @@ public class WardBookedDetailsModel {
 	
 	public void calculateBill(String patientName, WardType wardType, Date bookedFromDate) {
 		billCost = billingService.calculateBillForWard(wardType, bookedFromDate);
-		System.out.println("-----------------billCost------"+billCost);
 	}
 
 }
